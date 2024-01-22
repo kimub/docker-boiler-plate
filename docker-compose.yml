@@ -1,0 +1,30 @@
+version: '3'
+services:
+  springboot-docker:
+    container_name: springboot-container
+    image: kimub1204/mewmew
+    ports:
+      - '8080:8080'
+  mysql-docker:
+    container_name: 'mysql-container'
+    image: mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: mewmew
+      MYSQL_ROOT_PASSWORD: P@ssword
+  mongo-docker:
+    container_name: 'mongo-container'
+    image: mongo
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: P@ssword
+      MONGO_INITDB_DATABASE: mewmew
+  redis-docker:
+    container_name: 'redis-container'
+    image: redis
+    ports:
+      - '6379:6379'
+    restart: unless-stopped
