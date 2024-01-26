@@ -14,6 +14,8 @@ services:
     environment:
       MYSQL_DATABASE: mewmew
       MYSQL_ROOT_PASSWORD: P@ssword
+    volumes:
+      - mysql-volume:/var/lib/mysql
     restart: always
   mongo-docker:
     container_name: 'mongo-container'
@@ -24,10 +26,18 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: P@ssword
       MONGO_INITDB_DATABASE: mewmew
+    volumes:
+      - mongo-volume:/data/db
     restart: always
   redis-docker:
     container_name: 'redis-container'
     image: redis
     ports:
       - '6379:6379'
+    volumes:
+      - redis-volume:/data
     restart: unless-stopped
+volumes:
+    mysql-volume:
+    mongo-volume:
+    redis-volume:
